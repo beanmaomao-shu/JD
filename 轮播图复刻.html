@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图复刻</title>
+</head>
+<body>
+    <script>
+        /*获取元素*/
+        const imgs=document.querySelectorAll('.good-border img')
+        const h6s=document.querySelectorAll('h6')
+        const spans=docuement.querySelectorAll('.shopbanner span')
+        /*图片数据*/
+        const data=[
+            {url:'./images/马油面霜.gif',title:'马油面霜',price:'￥129'},
+            {url:'./images/隐形眼药水.gif',title:'隐形眼药水',price:'￥79'},
+            {url:'./images/雪花秀洁面乳.gif',title:'雪花秀洁面乳',price:'￥158'},
+            {url:'./images/液体牛乳钙.gif',title:'液体牛乳钙',price:'￥229'},
+            {url:'./images/复合维生素.gif',title:'复合维生素',price:'￥450'},
+            {url:'./images/常青藤项链.gif',title:'常青藤项链',price:'￥680'},
+            {url:'./images/戴森吹风机.gif',title:'戴森吹风机',price:'￥1280'},
+            {url:'./images/德运奶粉.gif',title:'德运奶粉',price:'￥520'},
+        ]
+        /*右侧按钮*/
+        const lr=document.querySelector('.lr')
+        let i=0
+        lr.addEventListener('click',function(){
+          i++
+          imgs[i].src=data[i].title
+          h6s[i].innerHTML=data[i].title
+          spans[i].innerHTML=data[i].price
+          i++
+          imgs[i].src=data[i].title
+          h6s[i].innerHTML=data[i].title
+          spans[i].innerHTML=data[i].price
+
+          i++
+          imgs[i].src=data[i].title
+          h6s[i].innerHTML=data[i].title
+          spans[i].innerHTML=data[i].price
+
+          i++
+          imgs[i].src=data[i].title
+          h6s[i].innerHTML=data[i].title
+          spans[i].innerHTML=data[i].price
+
+          if(i>=12){
+            i=0
+          }
+        })
+        /*左侧按钮*/
+        const rl=document.querySelector('.rl')
+        rl.addEventListener('click',function(){
+            i--
+            imgs[i].src=data[i].title
+            h6s[i].innerHTML=data[i].title
+            spans[i].innerHTML=data[i].price
+
+            i--
+            imgs[i].src=data[i].title
+            h6s[i].innerHTML=data[i].title
+            spans[i].innerHTML=data[i].price
+
+            i--
+            imgs[i].src=data[i].title
+            h6s[i].innerHTML=data[i].title
+            spans[i].innerHTML=data[i].price
+
+            i--
+            imgs[i].src=data[i].title
+            h6s[i].innerHTML=data[i].title
+            spans[i].innerHTML=data[i].price
+
+            if(i<0)
+            {
+                i=11
+            }
+
+            toggle()
+        })
+
+        function toggle(){
+            imgs[i].src=data[i].url
+            h6s[i].innerHTML=data[i].title
+        }
+
+    let timer=setIntervl(function()
+    {
+        lr.click()
+    },1000)
+
+    const shopbanner=document.querySelector('.shopbaner')
+    shopbanner.addEventListener('mouseenter',function(){
+        clearInterval(timer)
+    })
+    shopbanner.addEventListener('mouseleaave',function(){
+        clearInterval(timer)
+        timer=setInterval(function(){
+            lr.click()
+        },1000)
+    })
+    </script>
+</body>
+</html>
